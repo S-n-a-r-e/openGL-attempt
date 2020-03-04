@@ -91,6 +91,7 @@ class ShaderReader {
 	};
 public:
 	String source;
+	bool error = false;
 
 	ShaderReader(const char* path) {
 		std::ifstream is(path);
@@ -110,7 +111,7 @@ public:
 			is.close();
 		}
 		else {
-			std::cout << "no file has been found\n";
+			error = true;
 		}
 	}
 };

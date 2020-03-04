@@ -54,19 +54,26 @@ void cycle2(GLFWwindow* wind) {
 }
 
 int main() {
+	const char* vpath = "shaders\\vshader.shader";
+	const char* fpath = "shaders\\fshader.shader";
+
+	ShaderReader vsr(vpath);
+
+	ShaderReader fsr(fpath);
+
+	if (vsr.error || fsr.error) {
+		std::cout << "no " << (vsr.error ? (fsr.error ? "vertex and fragment" : "vertex") : "fragment") << " shader had been found\n\n" << 
+			"they should be in \"*filepath*\\shaders\"\n\n" << 
+			"close console to continue...\n\n";
+		while(true){}
+	}
+
 	glfwInit();
 
 	GLFWwindow* wind = glfwCreateWindow(300, 200, "pes", 0, 0);
 	glfwMakeContextCurrent(wind);
 
 	glewInit();
-
-	const char* path = "C:\\Users\\User\\Desktop\\vshader.shader";
-	const char* fpath = "C:\\Users\\User\\Desktop\\fshader.shader";
-
-	ShaderReader vsr(path);
-
-	ShaderReader fsr(fpath);
 
 	unsigned int vshader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vshader, 1, &vsr.source.word, NULL);
@@ -121,6 +128,9 @@ int main() {
 			cycle2(wind);
 		}
 	}
+	glfwTerminate();
 
+	std::cout << "close console to continue...\n\n";
+	while (true) {}
 	return 0;
 }
