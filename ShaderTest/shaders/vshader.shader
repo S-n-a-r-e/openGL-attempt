@@ -5,14 +5,11 @@ layout(location = 1) in vec3 inColor;
 
 out vec3 Color;
 
-void main(){
-	vec3 addColor = inColor;
+uniform mat4 proj;
+uniform mat4 move;
 
-	if(addColor.r > 0.5f){
-		addColor.r = addColor.r - 0.5f;
-	}
-	
-	Color = addColor;
+void main(){	
+	Color = inColor;
 
-	gl_Position = vec4(position, 1.0f);
+	gl_Position = proj * move * vec4(position, 1.0f);
 }
