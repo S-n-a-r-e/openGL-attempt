@@ -10,7 +10,7 @@ void cycle2(GLFWwindow* wind) {
 	float vertices[] = {
 				-0.5f, 0.4f, 0.0f,
 				-0.1f, -0.4f, 0.0f,
-				0.4f, 0.7f, 0.0f,
+				0.4f, 0.7f, 0.0f
 	};
 	float colors[] = {
 				1.0f, 0.0f, 0.6f,
@@ -106,6 +106,7 @@ int main() {
 		std::cout << "compile ok\n\n";
 
 		unsigned int prog = glCreateProgram();
+
 		glAttachShader(prog, vshader);
 		glAttachShader(prog, fshader);
 
